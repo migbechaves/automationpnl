@@ -1,0 +1,19 @@
+{
+  "name": "pnl",
+  "version": "1.0.0",
+  "description": "A Telegram bot that records `TIME-IN` and `TIME-OUT` from the date/time watermark in an uploaded image. The watermark is the official timestamp; Telegram upload time is never used.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "claude-code": "^1.0.0"
+  }
+}

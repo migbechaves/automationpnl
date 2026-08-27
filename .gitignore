@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.env
+*.pyc
+service-account.json
+temp/
+exports/
+oauth_credentials.json
+token.json
+node_modules/
+samples/
+.claude/settings.json
