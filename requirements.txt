@@ -3,7 +3,13 @@ Pillow>=10.0,<12
 pytesseract>=0.3.13,<0.4
 python-dotenv>=1.0,<2
 gspread>=6.0,<7
+google-api-python-client>=2.0,<3
 google-auth>=2.0,<3
 google-auth-oauthlib>=1.0,<2
 openpyxl>=3.1,<4
 pytest>=8.0,<9
+
+# Optional -- only when FAST_OCR=true (see README "Faster OCR"). Heavy (~1 GB with
+# paddlepaddle). The bot runs fine without it; fast_ocr.py falls back to Tesseract.
+# paddleocr>=2.7,<2.9
+# paddlepaddle>=2.6,<3

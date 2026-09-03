@@ -11,3 +11,5 @@ token.json
 node_modules/
 samples/
 .claude/settings.json
+ocr_debug.log
+bot-restart.log

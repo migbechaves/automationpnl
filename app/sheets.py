@@ -1,3 +1,4 @@
+import threading
 from datetime import datetime
 
 from .config import Settings
@@ -20,24 +21,34 @@ class SheetsRepository:
         self.sheet = gspread.authorize(credentials).open_by_key(settings.google_sheet_id).worksheet(settings.google_worksheet)
         if not self.sheet.row_values(1):
             self.sheet.append_row(HEADERS)
+        # The underlying HTTP session isn't safe to call from multiple threads at
+        # once, and multiple employees can now be processed concurrently (see
+        # app/bot.py). `lock` is exposed so callers can also hold it across a whole
+        # read-then-write sequence (e.g. existing()+next_id()+add()), not just one
+        # call at a time, to avoid two concurrent records computing the same ID.
+        self.lock = threading.RLock()
 
     def existing(self, date: str, time: str, record_type: str, employee: str) -> bool:
-        rows = self.sheet.get_all_records()
-        return any(
-            row.get("Date") == date and row.get("Time") == time
-            and row.get("Type") == record_type and row.get("Employee") == employee
-            for row in rows
-        )
+        with self.lock:
+            rows = self.sheet.get_all_records()
+            return any(
+                row.get("Date") == date and row.get("Time") == time
+                and row.get("Type") == record_type and row.get("Employee") == employee
+                for row in rows
+            )
 
     def next_id(self) -> str:
-        return f"{len(self.sheet.get_all_values()):04d}"
+        with self.lock:
+            return f"{len(self.sheet.get_all_values()):04d}"
 
     def add(self, record: AttendanceRecord) -> None:
-        self.sheet.append_row([
-            record.record_id, record.date, record.time, str(record.record_type), record.employee,
-            f'=HYPERLINK("{record.image_url}","View")', record.telegram_user_id,
-            record.telegram_message_id, record.status,
-        ], value_input_option="USER_ENTERED")
+        with self.lock:
+            self.sheet.append_row([
+                record.record_id, record.date, record.time, str(record.record_type), record.employee,
+                f'=HYPERLINK("{record.image_url}","View")', record.telegram_user_id,
+                record.telegram_message_id, record.status,
+            ], value_input_option="USER_ENTERED")
 
     def rows(self) -> list[dict]:
-        return self.sheet.get_all_records()
+        with self.lock:
+            return self.sheet.get_all_records()

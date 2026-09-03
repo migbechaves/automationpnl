@@ -1,0 +1,7 @@
+# Canonical employee roster used to auto-correct misspelled names pulled from
+# Telegram captions (see app/roster.py). One name per line, "First Middle Last"
+# format. Lines starting with # are ignored; blank lines are ignored.
+Lorence Berganting
+Alfonso Luis Alcoy
+John Renzo Dacer
+Jan Aubrey Azures
