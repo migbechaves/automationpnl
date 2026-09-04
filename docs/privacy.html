@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Attendance Recorder</title>
+<style>
+  body { font: 16px/1.6 system-ui, sans-serif; max-width: 42rem; margin: 3rem auto; padding: 0 1rem; color: #1a1a1a; }
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.15rem; margin-top: 2rem; }
+  code { background: #f0f0f0; padding: .1em .3em; border-radius: 3px; }
+  a { color: #0b57d0; }
+</style>
+</head>
+<body>
+<h1>Privacy Policy — Attendance Recorder</h1>
+<p><em>Last updated: 2026-09-04</em></p>
+<p>
+  Attendance Recorder is a private tool used by our organization to log employee
+  time-in and time-out attendance. It is not offered to the public.
+</p>
+
+<h2>What it accesses</h2>
+<p>With your consent, the app uses Google OAuth with a single scope:</p>
+<ul>
+  <li>
+    <code>https://www.googleapis.com/auth/drive.file</code> — lets the app create
+    and manage <strong>only the files and folders it creates itself</strong> in
+    the authorizing account's Google Drive. It cannot see or touch any other file
+    in your Drive.
+  </li>
+</ul>
+<p>
+  Attendance spreadsheet rows are written through a separate Google service
+  account, not through your personal login.
+</p>
+
+<h2>What data is stored</h2>
+<ul>
+  <li>Attendance photos sent to the Telegram bot, uploaded to a folder in the
+    authorizing account's Google Drive.</li>
+  <li>One row per attendance record in a Google Sheet: record ID, date, time,
+    type (time-in / time-out), employee name, a link to the photo folder, the
+    sender's Telegram display name and numeric user ID, and the Telegram message ID.</li>
+</ul>
+
+<h2>How data is used</h2>
+<p>
+  Solely to produce the organization's internal attendance record. It is
+  <strong>not</strong> sold, shared with third parties, or used for advertising
+  or any purpose beyond attendance tracking.
+</p>
+
+<h2>Retention</h2>
+<p>
+  Records and photos remain in the organization's Google Sheet and Drive until an
+  administrator deletes them.
+</p>
+
+<h2>Revoking access</h2>
+<p>
+  Remove the app's Drive access at any time from
+  <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.
+</p>
+
+<h2>Contact</h2>
+<p>pnl.itmonitoring@gmail.com</p>
+</body>
+</html>
